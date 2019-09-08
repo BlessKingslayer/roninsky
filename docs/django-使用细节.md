@@ -62,3 +62,22 @@
     class Example:
         pass
     ```
+---
+11. Django -> model -> class Meta: 通过内嵌类 Meta 给 model 定义元数据, 可包含以下选项
+    * app_label
+        * app_label这个选项只在一种情况下使用，就是你的模型类不在默认的应用程序包下的models.py文件中，这时候你需要指定你这个模型类是那个应用程序的。比如你在其他地方写了一个模型类，而这个模型类是属于myapp的，那么你这是需要指定为：
+            ```python
+            app_label = 'myapp'
+            ```
+    * db_table
+        * db_table是用于指定自定义数据库表名的。Django有一套默认的按照一定规则生成数据模型对应的数据库表名，如果你想使用自定义的表名，就通过这个属性指定，比如：
+            ```python
+            db_table='my_owner_table' 
+            ```
+        若不提供该参数, Django 会使用 app_label + '_' + module_name 作为表的名字.
+        若你的表的名字是一个 SQL 保留字, 或包含 Python 变量名不允许的字符--特别是连字符 --没关系. Django 会自动在幕后替你将列名字和表名字用引号引起来.
+    * 更多请查看: https://www.cnblogs.com/tongchengbin/p/7670927.html
+12. Django -> model -> models.DateTimeField
+    * auto_now=Ture，字段保存时会自动保存当前时间，但要注意每次对其实例执行save()的时候都会将当前时间保存，也就是不能再手动给它存非当前时间的值。
+    * auto_now_add=True，字段在实例第一次保存的时候会保存当前时间，不管你在这里是否对其赋值。但是之后的save()是可以手动赋值的。也就是新实例化一个model，想手动存其他时间，就需要对该实例save()之后赋值然后再save()。
+    * 两者默认值都为False
