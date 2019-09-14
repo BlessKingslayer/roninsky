@@ -81,3 +81,19 @@
     * auto_now=Ture，字段保存时会自动保存当前时间，但要注意每次对其实例执行save()的时候都会将当前时间保存，也就是不能再手动给它存非当前时间的值。
     * auto_now_add=True，字段在实例第一次保存的时候会保存当前时间，不管你在这里是否对其赋值。但是之后的save()是可以手动赋值的。也就是新实例化一个model，想手动存其他时间，就需要对该实例save()之后赋值然后再save()。
     * 两者默认值都为False
+13. QuerySet 本质上是一个懒加载的对象，只有在真正使用的时候才会执行查询
+    * QuerySet 接口有支持链式调用和不支持链式调用
+    * 支持链式调用: all, filter, exclude, reverse, distinct, none
+    * 不支持链式调用: get, create, get_or_create, update_or_create, count, latest, earliest, first, last, exists, bulk_create, in_bulk, update, delete, values, values_list(tuple)
+    * 进阶接口:
+        * defer接口: 延迟加载, 指定某个字段延迟加载
+        * only接口: 只获取指定的某一个接口
+        * select_related接口：解决一对多的关联关系，查询关联字段的问题
+        * prefetch_related接口: 解决多对多关联关系的查询问题
+        * 使用原生的SQL接口: Post.objects.raw('SQL语句'), 过多使用原生SQL会提高维护成本
+    * 常用的字段查询
+    * 进阶查询:
+        * F表达式：在数据库层面执行原子操作
+        * Q表达式：解决OR查询或者AND查询问题
+        * Count: 做聚合查询
+        * Sum: 用来做合计
