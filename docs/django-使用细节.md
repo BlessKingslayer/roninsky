@@ -97,3 +97,14 @@
         * Q表达式：解决OR查询或者AND查询问题
         * Count: 做聚合查询
         * Sum: 用来做合计
+14. url 配置:
+    * from django.conf.urls import url
+    * url(<正则或者字符串>, \<view function\>, <固定参数context>, \<url的名称>)
+    > 完整例子
+    >> `url(r'^category/(?P<category_id>\d+)/$', post_list, {'example': 'nop'}, name='category_list)` 
+
+    >> 解析:   
+    >> 首先定义一个带group的正则表达式， 通过定义(?P(category_id)\d+)把URL这个位置的字符作为名为 category_id 的参数传递给 post_list 函数。  
+    >> 第二个参数定义用来处理请求的函数  
+    >> 第三个参数定义默认传递过去的参数  
+    >> 第四个参数是这个URL的名称
