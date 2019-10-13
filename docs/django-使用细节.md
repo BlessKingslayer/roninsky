@@ -108,3 +108,13 @@
     >> 第二个参数定义用来处理请求的函数  
     >> 第三个参数定义默认传递过去的参数  
     >> 第四个参数是这个URL的名称
+
+15. render 方法 
+    * `from django.shortcuts import render`
+    * `render(request, template_name, context=None, context_type=None, status=None, using=None)`  
+        + request: 封装了HTTP请求的request对象
+        + template_name: 模板名称，可以带上路径
+        + context: 字典数据，传递到模板中
+        + context_type: 页面编码类型，默认值是 text/html
+        + status: 状态码，默认值是200
+        + using: 使用哪种模板引擎解析，可以在setting中配置，默认使用Django自带的模板
