@@ -118,3 +118,12 @@
         + context_type: 页面编码类型，默认值是 text/html
         + status: 状态码，默认值是200
         + using: 使用哪种模板引擎解析，可以在setting中配置，默认使用Django自带的模板
+
+---
+16. 模板中 url 使用
+    * {% url 'name' arg1 arg2 %}
+    * 关键字参数 {% url 'name' arg1=arg1 arg2=arg2 %}
+
+17. 设计模式:
+    * 开-闭原则 对扩展开放，对修改关闭
+    * 高内聚， 低耦合
