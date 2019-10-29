@@ -20,6 +20,7 @@ class Category(models.Model):
 
     class Meta:
         verbose_name = verbose_name_plural = '分类'
+        unique_together = [['name', 'owner']]
 
     def __str__(self):
         return self.name
@@ -56,6 +57,7 @@ class Tag(models.Model):
 
     class Meta:
         verbose_name = verbose_name_plural = '标签'
+        unique_together = [['name', 'owner']]
 
     def __str__(self):
         return self.name
@@ -85,6 +87,7 @@ class Post(models.Model):
     class Meta:
         verbose_name = verbose_name_plural = '文章'
         ordering = ['-id']  # 根据id进行降序排列
+        get_latest_by = 'created_time'
 
     def __str__(self):
         return self.title
@@ -116,3 +119,7 @@ class Post(models.Model):
     @classmethod
     def hot_posts(cls):
         return cls.objects.filter(status=cls.STATUS_NORMAL).order_by('-pv')
+
+    @classmethod
+    def latest_posts(cls):
+        return cls.objects.filter(status=cls.STATUS_NORMAL)

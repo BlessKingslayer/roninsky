@@ -30,6 +30,6 @@ urlpatterns = [
     url(r'^category/(?P<category_id>\d+)/$', CategoryView.as_view(), name='category-list'),  # 参数以category_id为名传入post_list函数中
     url(r'^tag/(?P<tag_id>\d+)/$', TagView.as_view(), name='tag-list'),
     # url(r'^post/(?P<post_id>\d+)/$', post_detail, name='post-detail'),
-    url(r'^post/(?P<pk>\d+)/$', PostDetailView.as_view(), name='post-detail'),
+    url(r'^post/(?P<post_id>\d+)/$', PostDetailView.as_view(), name='post-detail'),
     url(r'^links/$', links, name='links'),
 ]
